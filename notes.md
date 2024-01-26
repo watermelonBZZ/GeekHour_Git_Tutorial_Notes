@@ -1,0 +1,122 @@
+（来源：https://www.bilibili.com/video/BV1HM411377j?p=2&spm_id_from=pageDriver&vd_source=b9eb6dd7cd13f2b13f30af094ee56ec2）
+
+## P2_配置
+
+## P3_新建仓库
+```
+git init [文件夹名称]
+git clone
+
+ls -a
+```
+
+## P4_工作区域
+
+### 工作区域
+工作区，<br>(git所在目录)
+
+`git add` 添加到
+
+Staging 暂存，<br>(.git/index)
+
+`git commit` 添加到
+
+本地仓库，<br>(git/objects)
+
+### 工作状态
+
+![Status](./public/pic/01_status.png)
+
+## P5_添加和提交文件
+### 5.1 创建文件
+
+```
+echo "content" > fileName.extension
+```
+
+### 5.2 添加至暂存区
+```
+git add 
+
+//通配符
+git add *.txt 
+git add .
+
+git rm --cached <file>...
+```
+
+
+### 5.3 从暂存区至本地repo  
+(但这里只是暂存区，如果在`git add` 之后的文件修改、添加、删除是没有track的，commit不会生效)
+```
+git commit -m
+```
+
+没有 `-m` 就会进入vim编辑器，ESC退出编辑模式，`:wq`是保存并退出
+
+### 5.4 查看commit记录
+
+```
+git log 
+git log --oneline
+```
+
+Notes: 换行操作
+
+    在 Markdown 中，要创建一个换行（而不是新的段落），可以使用两个空格或者使用 \<br> 标签。
+
+## P6_git reset
+### 三种 
+![git_rest](./public/pic/02_git_rest.png)
+```
+git rest --hard ^HEAD
+```
+误操作恢复
+```
+//查询历史操作记录，选择要恢复的版本
+git reflog 
+```
+
+## P6_git diff
+### sanzhong 
+
+```
+//默认是比较工作区和暂存区（git add 前后）
+git diff
+
+//比较工作区和本地repo之间
+git diff HEAD
+
+//比较暂存区和本地repo之间
+git diff --cached
+
+//比较版本之间
+git diff id1 id2
+
+//比较HEAD 和上一个版本之间
+git diff HEAD~/^ + num HEAD
+
+//比较HEAD 和上一个版本之间
+git diff HEAD~/^ + num HEAD + fileName
+```
+
+## P8_git rm
+### 删除的两种方法
+
+#### 1
+```
+rm fileName //先删除工作区的文件
+git add . //提交到暂存区
+git commit -m
+```
+
+#### 2
+```
+git rm //同时删除工作区和暂存区
+git commit -m
+```
+![git_rest](./public/pic/08_git_rm.png)
+
+
+## P8_git_ignore
+### 
