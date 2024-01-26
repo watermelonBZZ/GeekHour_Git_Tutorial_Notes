@@ -38,12 +38,15 @@ echo "content" > fileName.extension
 ```
 git add 
 
-//通配符
+//通配符匹配规则
 git add *.txt 
 git add .
 
 git rm --cached <file>...
 ```
+
+notes：
+通配符匹配规则，p8会详细说明
 
 
 ### 5.3 从暂存区至本地repo  
@@ -113,10 +116,45 @@ git commit -m
 #### 2
 ```
 git rm //同时删除工作区和暂存区
+git rm --cached <file_name> //只删除staging area里面的文件，保留工作区的
 git commit -m
 ```
 ![git_rest](./public/pic/08_git_rm.png)
 
 
+
+
 ## P8_git_ignore
-### 
+### 8.1 规则
+忽略的文件夹是以 `/` 结尾  
+如果一个文件已经在本地repo中，想要删除，并更新本地repo，做法如下：
+```
+// 现在staging中删除这个文件
+git rm --cached <file_name>
+
+//然后commit 更新本地repo 
+git commit -m "Removed <file_name>" 
+
+//可以查看状态, s means short
+git status -s 
+```
+
+### 8.2 通配符匹配规则
+
+空行或者以＃开头的行会被Git忽略。一般空行用于可读性的分隔，＃一般用作注释 <br>
+使用标准的Blob模式匹配，例如：<br>
+星号 *通配任意个字符<br>
+问号？匹配单个字符<br>
+中括号[]表示匹配列表中的单个字符，比如：[abc] 表示a/b/c<br>
+两个星号 ** 表示匹配任意的中间目录<br>
+中括号可以使用短中线连接，比如：<br>
+[0-9]表示任意一位数字，[a-z]表示任意一位小写字母<br>
+感叹号！表示取反<br>
+
+`/`表示根目录<br>
+`build/`忽略所有文件夹下的build文件夹
+
+github上有常用忽略模版
+
+## P10_git
+### 8.1 规则
